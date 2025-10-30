@@ -15,34 +15,30 @@ public class 펠린드롬연결리스트 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        List<String> list = new ArrayList<>();
 
         while(true){
-            String str = br.readLine();
-            if(str.equals("0")){
+            String s =  br.readLine();
+            if(s.equals("0")){
                 break;
             }
-            list.add(str);
-        }
+            String[] split = s.split("");
 
-        for(String str2 : list){
-            String[] split = str2.split("");
+            ArrayDeque<String> deque = new ArrayDeque<String>(Arrays.asList(split));
+            int sig = 0;
 
-            LinkedList<String> s = new LinkedList<>(Arrays.stream(split).toList());
-
-            while(s.size() > 1){
-                String s1 = s.removeFirst();
-                String s2 = s.removeLast();
-
+            while(deque.size() >= 2){
+                String s1 = deque.removeFirst();
+                String s2 = deque.removeLast();
                 if(!s1.equals(s2)){
+
                     System.out.println("no");
+                    sig = 1;
                     break;
                 }
             }
-
-            System.out.println("yes");
+            if(sig == 0){
+                System.out.println("yes");
+            }
         }
-
-        br.close();
     }
 }
